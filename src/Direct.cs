@@ -370,6 +370,9 @@ namespace ForzaTriggers
         {
             if (tmTimer != null) return;
             string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "input-timing.log");
+            // Opt-in diagnostics: the log is written only if input-timing.log already exists next to the exe
+            // (create an empty file to enable it), so normal users don't get a file growing every second.
+            if (!System.IO.File.Exists(path)) return;
             try { System.IO.File.WriteAllText(path, "# время | отчётов/с | макс. пауза мс | пауз>8мс | пачкой (<0.5мс) | макс. ViGEm мс | записей курков/с | макс. запись мс\r\n"); } catch { }
             double f = Stopwatch.Frequency / 1000.0;
             tmTimer = new Timer(_ =>
