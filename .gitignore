@@ -1,0 +1,21 @@
+# build output (release binaries are published on the GitHub Releases page)
+*.exe
+*.exe.bak*
+*.pdb
+dist/
+
+# local runtime files
+*.ini
+telemetry-*.bin
+input-timing.log
+*.wav
+
+# the local install folder with the user's own exe, settings and recordings
+ForzaTriggers/
+
+# editors / OS
+.vs/
+.vscode/
+.claude/
+Thumbs.db
+desktop.ini
