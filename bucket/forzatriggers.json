@@ -1,0 +1,34 @@
+{
+    "version": "2.1",
+    "description": "DualSense adaptive triggers and HD haptics for Forza Horizon 6 / 5 on PC.",
+    "homepage": "https://github.com/GefryV3/ForzaTriggers-DualSense-Forza-Horizon",
+    "license": "MIT",
+    "notes": [
+        "Enable Data Out in Forza Horizon (IP 127.0.0.1, port 5300).",
+        "Direct USB mode needs ViGEmBus and HidHide (free, from github.com/nefarius)."
+    ],
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/GefryV3/ForzaTriggers-DualSense-Forza-Horizon/releases/download/v2.1/ForzaTriggers.zip",
+            "hash": "6ecd5709ca843ce536a40ec8cd71a31d94060d5e4877cf8a2bfa0c13e1480830"
+        }
+    },
+    "bin": "ForzaTriggers.exe",
+    "shortcuts": [
+        [
+            "ForzaTriggers.exe",
+            "ForzaTriggers"
+        ]
+    ],
+    "persist": "ForzaTriggers.ini",
+    "checkver": {
+        "github": "https://github.com/GefryV3/ForzaTriggers-DualSense-Forza-Horizon"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/GefryV3/ForzaTriggers-DualSense-Forza-Horizon/releases/download/v$version/ForzaTriggers.zip"
+            }
+        }
+    }
+}
