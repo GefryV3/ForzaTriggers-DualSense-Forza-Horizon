@@ -80,6 +80,7 @@ It is a single small `.exe` (~100 KB), free and open source, no installer, no te
 ## Quick start
 
 1. **Download** `ForzaTriggers.zip` from [Releases](https://github.com/GefryV3/ForzaTriggers-DualSense-Forza-Horizon/releases/latest) and unzip it anywhere.
+   Or install with **Scoop**: `scoop bucket add forzatriggers https://github.com/GefryV3/ForzaTriggers-DualSense-Forza-Horizon` then `scoop install forzatriggers/forzatriggers`. A **winget** package (`winget install GefryV3.ForzaTriggers`) is pending review.
 2. **Enable telemetry in Forza Horizon:** *Settings → HUD and Gameplay → Data Out = On, Data Out IP Address = `127.0.0.1`, Data Out IP Port = `5300`.*
 3. Choose a mode in *Settings → General → Mode*:
 
