@@ -9,7 +9,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-4da3ff?style=for-the-badge)](LICENSE)
 ![Windows 10/11](https://img.shields.io/badge/Windows-10%20%7C%2011-be78ff?style=for-the-badge)
 
-[English](#english) · [Русский](#русский)
+[English](#english) · [Русский](#русский) · [FAQ](#faq) · [Website](https://gefryv3.github.io/ForzaTriggers-DualSense-Forza-Horizon/)
 
 <img src="docs/screenshot-en.png" alt="ForzaTriggers – DualSense adaptive trigger and haptic feedback app for Forza Horizon on PC" width="900">
 
@@ -18,6 +18,16 @@
 ---
 
 <a name="english"></a>
+
+### How do I get DualSense adaptive triggers in Forza Horizon on PC?
+
+Forza Horizon 6 and Forza Horizon 5 on PC only give a PS5 controller plain rumble. **ForzaTriggers** adds real adaptive triggers and HD haptics in 3 steps:
+
+1. **[Download `ForzaTriggers.zip`](https://github.com/GefryV3/ForzaTriggers-DualSense-Forza-Horizon/releases/latest)** and unzip it (free, ~100 KB, no installer).
+2. In Forza: **Settings → HUD and Gameplay → Data Out = On, IP `127.0.0.1`, port `5300`**.
+3. Run `ForzaTriggers.exe` and pick **direct USB** (needs free [ViGEmBus](https://github.com/nefarius/ViGEmBus/releases) + [HidHide](https://github.com/nefarius/HidHide/releases)) or **through DSX**. Done — see [Quick start](#quick-start) for details.
+
+Works with the Steam and Microsoft Store / Game Pass versions, DualSense and DualSense Edge, Windows 10/11.
 
 ## What is it?
 
@@ -112,6 +122,34 @@ Then press **Test L2**, **Test R2** and **Haptics test** — you should feel all
 | Triggers work, no haptics in DSX mode | Turn DSX game *Rumble* off, set *Haptics → Audio → System Audio*. |
 | Haptics silent over Bluetooth in DSX mode | Bluetooth haptics in DSX requires DSX+. |
 
+<a name="faq"></a>
+
+## FAQ
+
+**Does Forza Horizon 5 / 6 support DualSense adaptive triggers on PC?**
+Not natively. On PC the game treats the DualSense like a generic gamepad: no adaptive triggers, no voice-coil haptics, only rumble. ForzaTriggers adds both using the game's official *Data Out* telemetry.
+
+**Do I need DSX (DualSenseX)?**
+No. The recommended *direct USB* mode needs only the free ViGEmBus and HidHide drivers. If you already own DSX, the app can drive the triggers and haptics through it instead (also works over Bluetooth; Bluetooth haptics need DSX+).
+
+**Does it work over Bluetooth?**
+Triggers — yes, in DSX mode. Full HD haptics without DSX need a USB cable (that's how the controller exposes its audio-haptic channel to Windows).
+
+**Will it get me banned? Does it inject into the game?**
+No injection, no memory reading, no mods. It only listens to the UDP telemetry that Forza sends out by design (the same feed motion rigs, dashboards and SimHub use) and talks to your controller.
+
+**Does it work with Steam / Microsoft Store / Game Pass?**
+Yes. The Store / Game Pass version needs a one-time loopback exemption (see the note in [Quick start](#quick-start)).
+
+**Does it work with Forza Motorsport or Forza Horizon 4?**
+The Data Out format is shared, so the parser supports FH4, FM7 and Forza Motorsport (2023), but the effects are tuned on Forza Horizon 6 / 5. Reports are welcome.
+
+**What's the difference from ForzaDSX / SimHub?**
+ForzaTriggers is a single ~100 KB exe focused on feel: a physically based brake pedal with a grip-limit "wall", ABS you can modulate by feel, engine-character haptics and side-correct impacts, plus a direct-USB mode with 16-bit / ~10 ms haptics and no paid software.
+
+**Windows SmartScreen warns about the exe.**
+The app is not code-signed (it's a free hobby project). Click *More info → Run anyway*, or build it yourself from source with `build.cmd`. The SHA256 of every release zip is listed in the release notes.
+
 ## Build from source
 
 No Visual Studio needed — Windows already ships the C# compiler:
@@ -189,6 +227,23 @@ CheckNetIsolation LoopbackExempt -a -n=<PackageFamilyName из списка вы
 - «Порт 5300 занят» — закрой SimHub / ForzaDSX / второй экземпляр.
 - Настройки — в `ForzaTriggers.ini` рядом с exe. При выходе курки и подсветка возвращаются в обычный режим.
 
+### Частые вопросы
+
+**Forza Horizon 5 / 6 на ПК поддерживает адаптивные курки DualSense?**
+Нет. На ПК игра видит DualSense как обычный геймпад: ни адаптивных курков, ни хаптики — только вибрация. ForzaTriggers добавляет и то и другое через официальную телеметрию *Data Out*.
+
+**Нужен ли DSX (DualSenseX)?**
+Нет. Режим «USB напрямую» требует только бесплатные драйверы ViGEmBus и HidHide. Если DSX уже куплен — можно работать через него (в том числе по Bluetooth; хаптика по Bluetooth — только DSX+).
+
+**Можно ли получить бан? Лезет ли программа в игру?**
+Нет. Никаких инъекций, чтения памяти и модов: программа только слушает UDP-телеметрию, которую Forza отдаёт штатно (её же используют SimHub, приборные панели и подвижные кокпиты).
+
+**Работает со Steam / Microsoft Store / Game Pass?**
+Да. Для версии из Store / Game Pass один раз нужна команда `CheckNetIsolation` (см. выше).
+
+**Windows SmartScreen ругается на exe.**
+Программа не подписана сертификатом (бесплатный проект). Нажми *Подробнее → Выполнить в любом случае* или собери сам через `build.cmd`. SHA256 архива указан в описании релиза.
+
 ### Сборка
 
 `build.cmd` — компилятор C# уже есть в Windows (.NET Framework 4), Visual Studio не нужна. Готовые файлы — в `dist\`.
@@ -197,6 +252,6 @@ CheckNetIsolation LoopbackExempt -a -n=<PackageFamilyName из списка вы
 
 ---
 
-<sub>Keywords: DualSense PC Forza Horizon 6, PS5 controller adaptive triggers Forza, DualSense haptic feedback Forza Horizon 5 PC, Forza Horizon DualSense support, DSX Forza, DualSenseX Forza adaptive triggers, Forza telemetry Data Out, DualSense Edge, ViGEmBus, HidHide.</sub>
+<sub>Keywords: DualSense PC Forza Horizon 6, PS5 controller adaptive triggers Forza, DualSense haptic feedback Forza Horizon 5 PC, Forza Horizon DualSense support, how to use PS5 controller adaptive triggers in Forza Horizon on PC, Forza Horizon 5 DualSense not working triggers, DSX Forza, DualSenseX Forza adaptive triggers, ForzaDSX alternative, Forza telemetry Data Out, DualSense Edge, ViGEmBus, HidHide. Адаптивные курки DualSense Forza Horizon ПК, геймпад PS5 Forza Horizon 5 вибрация, хаптика DualSense на ПК.</sub>
 
 <sub>ForzaTriggers is an independent fan project. It is not affiliated with or endorsed by Microsoft, Xbox Game Studios, Playground Games, Turn 10 or Sony Interactive Entertainment. "Forza", "Forza Horizon", "DualSense" and "PlayStation" are trademarks of their respective owners.</sub>
